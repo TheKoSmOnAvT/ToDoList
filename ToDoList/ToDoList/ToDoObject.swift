@@ -8,7 +8,7 @@
 
 import Foundation
 
-class toDoObject{
+class ToDoObject{
     let tittle : String
     let info : String
     let date : Date

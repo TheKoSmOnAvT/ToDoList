@@ -23,7 +23,7 @@ class AddTask: UIViewController {
     @IBAction func addAction (_ sender : UIBarButtonItem){
         let tittle = self.tittle.text ?? ""
         let info = self.info.text ?? ""
-        let newTask = toDoObject(tittle : tittle,info: info,date: date.date)
+        let newTask = ToDoObject(tittle : tittle,info: info,date: date.date)
     }
     
    
