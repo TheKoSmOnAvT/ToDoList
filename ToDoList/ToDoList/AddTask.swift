@@ -8,8 +8,15 @@
 
 import UIKit
 
+protocol addTaskViewControllerDelegate{
+    func addObject(_ addTaskViewController : AddTask, didAddObject : ToDoObject )
+}
+
+
 class AddTask: UIViewController {
 
+    var delegate : addTaskViewControllerDelegate?
+    
     @IBOutlet weak var tittle: UITextField!
     
     @IBOutlet weak var info: UITextView!
@@ -24,6 +31,8 @@ class AddTask: UIViewController {
         let tittle = self.tittle.text ?? ""
         let info = self.info.text ?? ""
         let newTask = ToDoObject(tittle : tittle,info: info,date: date.date)
+        delegate?.addObject(self, didAddObject: newTask)
+        self.dismiss(animated: true, completion: nil)
     }
     
    

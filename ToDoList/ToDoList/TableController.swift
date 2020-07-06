@@ -8,8 +8,8 @@
 
 import UIKit
 
-class TableController: UITableViewController {
-    
+class TableController: UITableViewController, addTaskViewControllerDelegate {
+
     var tasks = [ToDoObject]()
     
     let dateFormatter = DateFormatter()
@@ -41,10 +41,6 @@ class TableController: UITableViewController {
         
         cell.detailTextLabel?.text = dateFormatter.string(from: task.date)
         
-        //.getFormattedDate(format: "yyyy-MM-dd HH:mm:ss")
-        //cell.detailTextLabel?.text = dateFormatter(task.date)
-        // Configure the cell...
-
         return cell
     }
     
@@ -84,14 +80,21 @@ class TableController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        let navigationController = segue.destination as! UINavigationController
+        let addTaskViewController = navigationController.topViewController as! AddTask
+        addTaskViewController.delegate = self
     }
-    */
-
+    
+  // MARK: - delegate
+    func addObject(_ addTaskViewController : AddTask, didAddObject : ToDoObject ){
+        
+        tasks.append(didAddObject)
+        tableView.reloadData()
+    }
 }
