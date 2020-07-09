@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreData
 
-class TableController: UITableViewController, addTaskViewControllerDelegate {
+class TableController: UITableViewController  {/*,addTaskViewControllerDelegate*/
 
     var tasks = [ToDoObject]()
     
@@ -19,6 +20,8 @@ class TableController: UITableViewController, addTaskViewControllerDelegate {
         dateFormatter.dateFormat  = "dd-MM-yyyy HH:mm"
         //let test = ToDoObject(tittle: "title", info: "info", date: Date())
         //tasks.append(test)
+        print(12222)
+        print("//")
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -28,7 +31,9 @@ class TableController: UITableViewController, addTaskViewControllerDelegate {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
       
         
+
         return tasks.count
+        
     }
 
     
@@ -37,22 +42,46 @@ class TableController: UITableViewController, addTaskViewControllerDelegate {
         
         let task = tasks[indexPath.row]
         
-        cell.textLabel?.text = task.tittle
-        
-        cell.detailTextLabel?.text = dateFormatter.string(from: task.date)
-        
+        cell.textLabel?.text = task.tittle ?? " "
+        if let date = task.date {
+            cell.detailTextLabel?.text = dateFormatter.string(from: date)
+        } else {
+            cell.detailTextLabel?.text = " "
+        }
         return cell
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        print(4)
+                      print("//")
+        tableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let context = appDelegate.persistentContainer.viewContext
+        let fetchRequest = ToDoObject.fetchRequest() as NSFetchRequest<ToDoObject>
+        do{
+            tasks = try context.fetch(fetchRequest)
+        } catch let err {
+            print("error \(err)")
+        }
+        print(2)
+               print("//")
+        tableView.reloadData()
+    }
 
-    /*
+
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
+
         return true
     }
-    */
 
+    
     /*
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -81,20 +110,20 @@ class TableController: UITableViewController, addTaskViewControllerDelegate {
     */
 
     
-    // MARK: - Navigation
+    
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let navigationController = segue.destination as! UINavigationController
-        let addTaskViewController = navigationController.topViewController as! AddTask
-        addTaskViewController.delegate = self
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let navigationController = segue.destination as! UINavigationController
+//        let addTaskViewController = navigationController.topViewController as! AddTask
+//        addTaskViewController.delegate = self
+//    }
     
-  // MARK: - delegate
-    func addObject(_ addTaskViewController : AddTask, didAddObject : ToDoObject ){
-        
-        tasks.append(didAddObject)
-        tableView.reloadData()
-    }
+//  // MARK: - delegate
+//    func addObject(_ addTaskViewController : AddTask, didAddObject : ToDoObject ){
+//
+//        tasks.append(didAddObject)
+//        tableView.reloadData()
+//    }
 }
