@@ -50,6 +50,21 @@ class AddTask: UIViewController {
         
         do {
             try context.save()
+            
+            let notificationMessage = "\(tittle) reminder "
+            let content = UNMutableNotificationContent()
+            content.body = notificationMessage
+            content.sound = UNNotificationSound.default
+            let dateComponents = Calendar.current.dateComponents([.day, .month, .year, .hour, .minute], from: date.date)
+            let triger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            
+            if let indetifier = task.taskId {
+                
+                let request = UNNotificationRequest(identifier: indetifier, content: content, trigger: triger)
+                let center = UNUserNotificationCenter.current()
+                center.add(request, withCompletionHandler: nil)
+                
+            }
         } catch let err {
             print("error : \(err)")
         }

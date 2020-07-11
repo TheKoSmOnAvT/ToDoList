@@ -97,8 +97,12 @@ class TableController: UITableViewController  {/*,addTaskViewControllerDelegate*
             let context = appDelegate.persistentContainer.viewContext
             context.delete(task)
             tasks.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .left
-            )
+            tableView.deleteRows(at: [indexPath], with: .left)
+            if let taskId = task.taskId {
+                    let centet = UNUserNotificationCenter.current()
+                    centet.removePendingNotificationRequests(withIdentifiers: [taskId])
+                }
+            
             do {
                 try context.save()
             } catch let err {
