@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import UserNotifications
 
 class TableController: UITableViewController  {/*,addTaskViewControllerDelegate*/
 
@@ -20,8 +21,7 @@ class TableController: UITableViewController  {/*,addTaskViewControllerDelegate*
         dateFormatter.dateFormat  = "dd-MM-yyyy HH:mm"
         //let test = ToDoObject(tittle: "title", info: "info", date: Date())
         //tasks.append(test)
-        print(12222)
-        print("//")
+
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         
@@ -53,8 +53,7 @@ class TableController: UITableViewController  {/*,addTaskViewControllerDelegate*
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print(4)
-                      print("//")
+
         tableView.reloadData()
     }
     
@@ -62,14 +61,19 @@ class TableController: UITableViewController  {/*,addTaskViewControllerDelegate*
         super.viewWillAppear(animated)
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let context = appDelegate.persistentContainer.viewContext
+        
         let fetchRequest = ToDoObject.fetchRequest() as NSFetchRequest<ToDoObject>
+        let sortByDateTime = NSSortDescriptor(key: "date", ascending: true)
+        let sortByTittle = NSSortDescriptor(key: "tittle", ascending: true)
+        
+        fetchRequest.sortDescriptors = [sortByDateTime, sortByTittle]
+        
         do{
             tasks = try context.fetch(fetchRequest)
         } catch let err {
             print("error \(err)")
         }
-        print(2)
-               print("//")
+
         tableView.reloadData()
     }
 
@@ -82,17 +86,27 @@ class TableController: UITableViewController  {/*,addTaskViewControllerDelegate*
     }
 
     
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+     
+        if tasks.count > indexPath.row{
+            let task =  tasks[indexPath.row]
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let context = appDelegate.persistentContainer.viewContext
+            context.delete(task)
+            tasks.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .left
+            )
+            do {
+                try context.save()
+            } catch let err {
+                print("error : \(err)")
+            }
+        }
     }
-    */
+    
 
     /*
     // Override to support rearranging the table view.
