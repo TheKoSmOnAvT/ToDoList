@@ -15,7 +15,7 @@ import UserNotifications
 //}
 
 
-class AddTask: UIViewController {
+class AddTask: UIViewController, UITextFieldDelegate , UITextViewDelegate{
 
    // var delegate : addTaskViewControllerDelegate?
     
@@ -75,6 +75,8 @@ class AddTask: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
+          self.info.delegate = self
+         self.tittle.delegate = self
         info.layer.borderColor = UIColor.lightGray.cgColor
         info.layer.borderWidth = 1.5
         info.layer.cornerRadius = 4
@@ -85,7 +87,19 @@ class AddTask: UIViewController {
         
         date.minimumDate = Date()
     }
-
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if(text == "\n") {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+  func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+      self.view.endEditing(true)
+      return false
+  }
 
 }
 

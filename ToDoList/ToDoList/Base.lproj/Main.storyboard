@@ -104,12 +104,12 @@
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="190" id="9bN-Ts-mUb"/>
                                 </constraints>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="YcI-C9-440">
-                                <rect key="frame" x="47" y="434" width="320" height="162"/>
+                            <datePicker contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="YcI-C9-440">
+                                <rect key="frame" x="55" y="463" width="320" height="162"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="162" id="qEY-uh-SqQ"/>
                                 </constraints>
@@ -123,6 +123,7 @@
                             <constraint firstItem="nXF-7T-NmU" firstAttribute="top" secondItem="OrM-Lg-m8Y" secondAttribute="top" constant="41" id="LWy-pP-9wl"/>
                             <constraint firstItem="nXF-7T-NmU" firstAttribute="leading" secondItem="4pH-sl-N74" secondAttribute="trailing" constant="30" id="OhK-Ce-j1o"/>
                             <constraint firstItem="YcI-C9-440" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wQs-Wd-pwN" secondAttribute="bottom" constant="63" id="Tvq-af-F5j"/>
+                            <constraint firstItem="OrM-Lg-m8Y" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YcI-C9-440" secondAttribute="bottom" constant="10" id="UuG-Fa-XRx"/>
                             <constraint firstItem="OrM-Lg-m8Y" firstAttribute="trailing" secondItem="nXF-7T-NmU" secondAttribute="trailing" constant="39" id="V1V-PG-ijB"/>
                             <constraint firstItem="nXF-7T-NmU" firstAttribute="trailing" secondItem="wQs-Wd-pwN" secondAttribute="trailing" id="g5H-3I-dIM"/>
                             <constraint firstItem="OrM-Lg-m8Y" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="YcI-C9-440" secondAttribute="bottom" constant="212" id="hbZ-QT-XZ2"/>
