@@ -10,9 +10,12 @@ import UIKit
 import CoreData
 import UserNotifications
 
+
 class TableController: UITableViewController  {/*,addTaskViewControllerDelegate*/
 
     var tasks = [ToDoObject]()
+    
+    var selectedCell : String = ""
     
     let dateFormatter = DateFormatter()
     
@@ -110,7 +113,24 @@ class TableController: UITableViewController  {/*,addTaskViewControllerDelegate*
             }
         }
     }
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+         selectedCell = tasks[indexPath.row].taskId!
+        return indexPath
+      
+    }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath){
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+
+  
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showData" else { return }
+        guard let destination = segue.destination as? InfoViewController else { return }
+        destination.objectId = selectedCell
+    }
 
     /*
     // Override to support rearranging the table view.

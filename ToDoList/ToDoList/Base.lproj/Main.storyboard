@@ -39,6 +39,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="D1c-0s-2HR" kind="show" identifier="showData" id="xI9-mm-18T"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -123,7 +126,7 @@
                             <constraint firstItem="nXF-7T-NmU" firstAttribute="top" secondItem="OrM-Lg-m8Y" secondAttribute="top" constant="41" id="LWy-pP-9wl"/>
                             <constraint firstItem="nXF-7T-NmU" firstAttribute="leading" secondItem="4pH-sl-N74" secondAttribute="trailing" constant="30" id="OhK-Ce-j1o"/>
                             <constraint firstItem="YcI-C9-440" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wQs-Wd-pwN" secondAttribute="bottom" constant="63" id="Tvq-af-F5j"/>
-                            <constraint firstItem="OrM-Lg-m8Y" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YcI-C9-440" secondAttribute="bottom" constant="10" id="UuG-Fa-XRx"/>
+                            <constraint firstItem="OrM-Lg-m8Y" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="YcI-C9-440" secondAttribute="bottom" constant="50" id="UuG-Fa-XRx"/>
                             <constraint firstItem="OrM-Lg-m8Y" firstAttribute="trailing" secondItem="nXF-7T-NmU" secondAttribute="trailing" constant="39" id="V1V-PG-ijB"/>
                             <constraint firstItem="nXF-7T-NmU" firstAttribute="trailing" secondItem="wQs-Wd-pwN" secondAttribute="trailing" id="g5H-3I-dIM"/>
                             <constraint firstItem="OrM-Lg-m8Y" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="YcI-C9-440" secondAttribute="bottom" constant="212" id="hbZ-QT-XZ2"/>
@@ -201,6 +204,60 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4yu-Wv-xLk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2031.8840579710147" y="137.94642857142856"/>
+        </scene>
+        <!--showData-->
+        <scene sceneID="M6o-Kf-sdv">
+            <objects>
+                <viewController title="showData" id="D1c-0s-2HR" customClass="InfoViewController" customModule="ToDoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="IZV-J9-im6">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cNV-NZ-vZL">
+                                <rect key="frame" x="87" y="153" width="240" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="xbh-dT-B7z">
+                                <rect key="frame" x="87" y="228" width="240" height="296"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="296" id="LGL-pv-Zc7"/>
+                                </constraints>
+                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dB7-lE-7ch">
+                                <rect key="frame" x="87" y="569" width="240" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="cNV-NZ-vZL" firstAttribute="centerX" secondItem="IZV-J9-im6" secondAttribute="centerX" id="3WY-nQ-x9F"/>
+                            <constraint firstItem="xbh-dT-B7z" firstAttribute="top" secondItem="cNV-NZ-vZL" secondAttribute="bottom" constant="41" id="7R4-ih-6uk"/>
+                            <constraint firstItem="cNV-NZ-vZL" firstAttribute="trailing" secondItem="dB7-lE-7ch" secondAttribute="trailing" id="9z2-CA-nqp"/>
+                            <constraint firstItem="cNV-NZ-vZL" firstAttribute="leading" secondItem="soD-vZ-NAn" secondAttribute="leading" constant="87" id="Aae-Ra-EW5"/>
+                            <constraint firstItem="dB7-lE-7ch" firstAttribute="top" secondItem="xbh-dT-B7z" secondAttribute="bottom" constant="45" id="B0k-xQ-gpm"/>
+                            <constraint firstItem="cNV-NZ-vZL" firstAttribute="trailing" secondItem="xbh-dT-B7z" secondAttribute="trailing" id="Z22-lI-2ie"/>
+                            <constraint firstItem="cNV-NZ-vZL" firstAttribute="leading" secondItem="xbh-dT-B7z" secondAttribute="leading" id="aE5-Ed-0TF"/>
+                            <constraint firstItem="cNV-NZ-vZL" firstAttribute="top" secondItem="soD-vZ-NAn" secondAttribute="top" constant="65" id="bQB-vF-75U"/>
+                            <constraint firstItem="cNV-NZ-vZL" firstAttribute="leading" secondItem="dB7-lE-7ch" secondAttribute="leading" id="qyw-xI-QRa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="soD-vZ-NAn"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="Obo-pm-2rG"/>
+                    <connections>
+                        <outlet property="dateText" destination="dB7-lE-7ch" id="1ZP-UH-yVe"/>
+                        <outlet property="info" destination="xbh-dT-B7z" id="A6q-wq-lLL"/>
+                        <outlet property="tittle" destination="cNV-NZ-vZL" id="kxK-Mb-HNk"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="854-9Q-eWP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="995.65217391304361" y="883.92857142857144"/>
         </scene>
     </scenes>
 </document>
